@@ -6,7 +6,7 @@ import ptBR from 'date-fns/locale/pt-BR'
 import Link from 'next/link'
 import { converDurationToTimeString } from '../../utils/convertDurationToTimeString'
 import Image from 'next/image'
-import {useRouter} from 'next/router'
+import { usePlayer } from '../../contexts/PlayerContext'
 
 type Episode ={
     id: string
@@ -24,6 +24,7 @@ type EpisodeProps = {
 }
 
 export default function Episode({episode}: EpisodeProps){  
+    const { play}= usePlayer()
     return(
         <div className={styles.episode}>
             <div className={styles.thumbnailContainer}>
@@ -36,7 +37,7 @@ export default function Episode({episode}: EpisodeProps){
                 src={episode.thumbnail} 
                 objectFit="cover"/>
                 <button type="button">
-                    <img src="/play.svg" alt="Tocar episódio"/>
+                    <img src="/play.svg" alt="Tocar episódio"  onClick={() => play(episode)}/>
                 </button>
             </div>
 
