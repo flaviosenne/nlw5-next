@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { converDurationToTimeString } from '../../utils/convertDurationToTimeString'
 import Image from 'next/image'
 import { usePlayer } from '../../contexts/PlayerContext'
+import Head  from 'next/head'
 
 type Episode ={
     id: string
@@ -27,6 +28,9 @@ export default function Episode({episode}: EpisodeProps){
     const { play}= usePlayer()
     return(
         <div className={styles.episode}>
+            <Head>
+            <title>{episode.title}</title>
+            </Head>
             <div className={styles.thumbnailContainer}>
                 <Link href="/">
                 <button type="button">
